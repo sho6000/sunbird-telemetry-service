@@ -11,6 +11,11 @@ RUN apt-get update \
     # && apt-get upgrade -y \
     && rm -rf /var/lib/apt/lists/*
 
+# Optional: add custom/internal CA certs. Uncomment both lines and drop your
+# .crt files into a local "custom-certs/" folder next to this Dockerfile to enable.
+# COPY custom-certs/*.crt /usr/local/share/ca-certificates/
+# RUN update-ca-certificates
+
 # Patch npm's bundled dependencies
 RUN npm install -g npm@11.10.0 --force \
     && npm pack tar@7.5.11 \
@@ -28,11 +33,11 @@ RUN npm install -g npm@11.10.0 --force \
     # && tar -xzf picomatch-4.0.4.tgz -C /usr/local/lib/node_modules/npm/node_modules/tinyglobby/node_modules/picomatch --strip-components=1 \
     && tar -xzf picomatch-4.0.4.tgz -C /usr/lib/node_modules/npm/node_modules/tinyglobby/node_modules/picomatch --strip-components=1 \
     && rm picomatch-4.0.4.tgz \
-
+    # dependency for minimatch
     && mkdir -p /usr/lib/node_modules/npm/node_modules/minimatch/node_modules/brace-expansion \
     && tar -xzf brace-expansion-5.0.7.tgz -C /usr/lib/node_modules/npm/node_modules/minimatch/node_modules/brace-expansion --strip-components=1 \
     && rm brace-expansion-5.0.7.tgz \
-    
+    # dependency for brace-expansion
     && mkdir -p /usr/lib/node_modules/npm/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match \
     && tar -xzf balanced-match-4.0.4.tgz -C /usr/lib/node_modules/npm/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match --strip-components=1 \
     && rm balanced-match-4.0.4.tgz
@@ -64,7 +69,8 @@ COPY --from=build /usr/bin/curl /usr/bin/curl
 COPY --from=build /lib/x86_64-linux-gnu/libssl* /lib/x86_64-linux-gnu/
 COPY --from=build /lib/x86_64-linux-gnu/libcrypto* /lib/x86_64-linux-gnu/
 COPY --from=build /etc/ssl /etc/ssl
-COPY --from=build /usr/local/share/ca-certificates /usr/local/share/ca-certificates
+# Only needed if the custom CA certs block above (build stage) is enabled:
+# COPY --from=build /usr/local/share/ca-certificates /usr/local/share/ca-certificates
 
 # Copy the app
 USER nonroot
