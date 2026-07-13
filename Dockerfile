@@ -17,6 +17,7 @@ RUN npm install -g npm@11.10.0 --force \
     && npm pack minimatch@10.2.1 \
     && npm pack picomatch@4.0.4 \
     && npm pack brace-expansion@5.0.7 \
+    && npm pack balanced-match@4.0.4 \
     && npm cache clean --force \
     # && tar -xzf tar-7.5.11.tgz -C /usr/local/lib/node_modules/npm/node_modules/tar --strip-components=1 \
     && tar -xzf tar-7.5.11.tgz -C /usr/lib/node_modules/npm/node_modules/tar --strip-components=1 \
@@ -27,9 +28,15 @@ RUN npm install -g npm@11.10.0 --force \
     # && tar -xzf picomatch-4.0.4.tgz -C /usr/local/lib/node_modules/npm/node_modules/tinyglobby/node_modules/picomatch --strip-components=1 \
     && tar -xzf picomatch-4.0.4.tgz -C /usr/lib/node_modules/npm/node_modules/tinyglobby/node_modules/picomatch --strip-components=1 \
     && rm picomatch-4.0.4.tgz \
+
     && mkdir -p /usr/lib/node_modules/npm/node_modules/minimatch/node_modules/brace-expansion \
     && tar -xzf brace-expansion-5.0.7.tgz -C /usr/lib/node_modules/npm/node_modules/minimatch/node_modules/brace-expansion --strip-components=1 \
-    && rm brace-expansion-5.0.7.tgz
+    && rm brace-expansion-5.0.7.tgz \
+    
+    && mkdir -p /usr/lib/node_modules/npm/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match \
+    && tar -xzf balanced-match-4.0.4.tgz -C /usr/lib/node_modules/npm/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match --strip-components=1 \
+    && rm balanced-match-4.0.4.tgz
+
 
 # Extract and prune the app
 WORKDIR /home/sunbird/telemetry
