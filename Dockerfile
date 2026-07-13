@@ -26,7 +26,8 @@ RUN npm install -g npm@11.10.0 --force \
     && rm minimatch-10.2.1.tgz \
     # && tar -xzf picomatch-4.0.4.tgz -C /usr/local/lib/node_modules/npm/node_modules/tinyglobby/node_modules/picomatch --strip-components=1 \
     && tar -xzf picomatch-4.0.4.tgz -C /usr/lib/node_modules/npm/node_modules/tinyglobby/node_modules/picomatch --strip-components=1 \
-    && rm picomatch-4.0.4.tgz
+    && rm picomatch-4.0.4.tgz \
+    && mkdir -p /usr/lib/node_modules/npm/node_modules/minimatch/node_modules/brace-expansion \
     && tar -xzf brace-expansion-5.0.7.tgz -C /usr/lib/node_modules/npm/node_modules/minimatch/node_modules/brace-expansion --strip-components=1 \
     && rm brace-expansion-5.0.7.tgz
 
