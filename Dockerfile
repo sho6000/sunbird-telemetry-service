@@ -6,6 +6,7 @@ FROM dhi.io/busybox:1.38.0-alpine3.24 AS shell
 # ---- Build stage (has npm + apt) ----
 FROM ${DHI_IMAGE_DEV} AS build
 
+RUN echo 'Acquire::http::Timeout "10";' > /etc/apt/apt.conf.d/99timeout
 RUN apt-get update \
     && apt-get install -y unzip curl ca-certificates openssl libsnappy-dev \
     && apt-get upgrade -y \
