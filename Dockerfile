@@ -7,7 +7,7 @@ FROM dhi.io/busybox:1.38.0-alpine3.24 AS shell
 FROM ${DHI_IMAGE_DEV} AS build
 
 RUN apt-get update \
-    && apt-get install -y unzip curl ca-certificates openssl libsnappy-dev \
+    && apt-get install -y unzip curl ca-certificates openssl libsnappy-dev gzip \
     # && apt-get upgrade -y \
     && rm -rf /var/lib/apt/lists/*
 
