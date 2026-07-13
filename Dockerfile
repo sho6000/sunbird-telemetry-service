@@ -12,7 +12,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Patch npm's bundled dependencies
-RUN npm install -g npm@11.10.0 \
+RUN npm install -g npm@11.10.0 --force \
     && npm pack tar@7.5.11 \
     && npm pack minimatch@10.2.1 \
     && npm pack picomatch@4.0.4 \
