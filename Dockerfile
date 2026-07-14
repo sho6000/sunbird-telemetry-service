@@ -24,13 +24,10 @@ RUN npm install -g npm@11.10.0 --force \
     && npm pack brace-expansion@5.0.7 \
     && npm pack balanced-match@4.0.4 \
     && npm cache clean --force \
-    # && tar -xzf tar-7.5.11.tgz -C /usr/local/lib/node_modules/npm/node_modules/tar --strip-components=1 \
     && tar -xzf tar-7.5.11.tgz -C /usr/lib/node_modules/npm/node_modules/tar --strip-components=1 \
     && rm tar-7.5.11.tgz \
-    # && tar -xzf minimatch-10.2.1.tgz -C /usr/local/lib/node_modules/npm/node_modules/minimatch --strip-components=1 \
     && tar -xzf minimatch-10.2.1.tgz -C /usr/lib/node_modules/npm/node_modules/minimatch --strip-components=1 \
     && rm minimatch-10.2.1.tgz \
-    # && tar -xzf picomatch-4.0.4.tgz -C /usr/local/lib/node_modules/npm/node_modules/tinyglobby/node_modules/picomatch --strip-components=1 \
     && tar -xzf picomatch-4.0.4.tgz -C /usr/lib/node_modules/npm/node_modules/tinyglobby/node_modules/picomatch --strip-components=1 \
     && rm picomatch-4.0.4.tgz \
     # dependency for minimatch
@@ -56,9 +53,6 @@ COPY --from=shell /lib/ld-musl-x86_64.so.1 /lib/ld-musl-x86_64.so.1
 COPY --from=shell /bin/busybox /bin/sh
 
 # Copy patched npm (already patched in build stage)
-# COPY --from=build /usr/local/lib/node_modules/npm /usr/local/lib/node_modules/npm
-# COPY --from=build /usr/local/bin/npm /usr/local/bin/npm
-# COPY --from=build /usr/local/bin/npx /usr/local/bin/npx
 COPY --from=build /usr/lib/node_modules/npm /usr/lib/node_modules/npm
 COPY --from=build /usr/bin/npm /usr/bin/npm
 COPY --from=build /usr/bin/npx /usr/bin/npx
