@@ -67,7 +67,7 @@ COPY --from=build /etc/ssl /etc/ssl
 # COPY --from=build /usr/local/share/ca-certificates /usr/local/share/ca-certificates
 
 # Copy the app
-USER nonroot
+USER node
 COPY --from=build --chown=nonroot:nonroot /home/sunbird/telemetry/telemetry /home/sunbird/telemetry/
 WORKDIR /home/sunbird/telemetry/
 
