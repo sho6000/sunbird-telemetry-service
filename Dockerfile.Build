@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
     libsnappy-dev \
     libsnappy1v5 \
     zip \
- && apt-get upgrade -y \
+ && apt-get upgrade -y -o Dpkg::Options::="--force-confold" -o Dpkg::Options::="--force-confdef" \
  && rm -rf /var/lib/apt/lists/*
 RUN mkdir -p /opt/telemetry
 ADD src /opt/telemetry/
