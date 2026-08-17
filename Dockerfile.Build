@@ -1,4 +1,4 @@
-FROM public.ecr.aws/docker/library/node:24.13.1-slim
+FROM dhi.io/node:24.17.0-debian13-dev
 LABEL maintainer="Mahesh <mahesh@ilimi.in>"
 RUN apt-get update && apt-get install -y \
     python3 \
@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
     libsnappy-dev \
     libsnappy1v5 \
     zip \
- && apt-get upgrade -y \
+ && apt-get upgrade -y -o Dpkg::Options::="--force-confold" -o Dpkg::Options::="--force-confdef" \
  && rm -rf /var/lib/apt/lists/*
 RUN mkdir -p /opt/telemetry
 ADD src /opt/telemetry/
