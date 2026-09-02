@@ -58,6 +58,12 @@
     },
     "request": {
       "qs": "^6.13.0"
+    },
+    "eslint": {
+      "ajv": "^6.14.0",
+      "@eslint/eslintrc": {
+        "ajv": "^6.14.0"
+      }
     }
   }
 }
