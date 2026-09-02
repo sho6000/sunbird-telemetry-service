@@ -8,7 +8,8 @@ module.exports = [
       '.nyc_output/**',
       'mochawesome-report/**',
       '.audit.json',
-      'telemetry*.log'
+      'telemetry*.log',
+      '.eslintignore'
     ]
   },
   {
