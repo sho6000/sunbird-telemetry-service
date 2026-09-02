@@ -57,6 +57,7 @@ These checks ensure consistent code style and secure dependency management.
 This repository uses GitHub Actions to automatically build and publish Docker container images to GitHub Container Registry (GHCR) whenever a new tag is pushed to the repository.
 
 ### Build and Publish Workflow
+
 The workflow is triggered on:
 - creation of any tag
 
