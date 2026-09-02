@@ -23,7 +23,7 @@ jobs:
         node-version: '22.15'
 
     - name: Upgrade npm
-      run: npm install -g npm@latest
+      run: npm install -g npm@11
 
     - name: Restore node_modules cache
       id: cache
